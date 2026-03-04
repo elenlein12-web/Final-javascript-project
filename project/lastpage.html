@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <title>Step Railway - ბილეთების შემოწმება</title>
+    <link rel="stylesheet" href="lastpage.css">
+</head>
+<body>
+
+ <header class="მთავარი-ნავიგაცია">
+      <div class="ლოგო">STEP RAILWAY</div>
+      <button class="დახმარება" onclick="window.location.href = 'AI.html'">
+        დახმარება
+      </button>
+      <button class="ბილეთის-შემოწმება" onclick="window.location.href = 'lastpage.html'">ბილეთის შემოწმება/დაბრუნება</button>
+    </header>
+
+    <div class="container">
+
+        <main class="check-section">
+            <div class="input-group">
+                <label for="ticketNumber">ბილეთის ნომერი</label>
+                <div class="search-box">
+                    <input type="text" id="ticketNumber" placeholder="მაგ: 00c91282...">
+                    <button id="checkBtn">შემოწმება</button>
+                </div>
+            </div>
+
+            <div id="resultArea" class="result-card hidden">
+                <div class="status-msg success">
+                    <span class="icon">✔</span> ბილეთის საფასური გადახდილია
+                </div>
+                
+                <div id="passengersContainer" class="ticket-details">
+                    <!-- აქ დინამიკურად ემატება მგზავრები -->
+                </div>
+
+                <p class="price">სულ გადახდილი: <span id="dispPrice"></span> ₾</p>
+
+                <button id="cancelBtn" class="delete-btn">ბილეთის გაუქმება</button>
+            </div>
+
+            <p id="errorMsg" class="error hidden">ბილეთი ვერ მოიძებნა!</p>
+            <p id="cancelSuccess" class="cancel-msg hidden">ბილეთი წარმატებით გაუქმდა</p>
+        </main>
+    </div>
+    
+
+
+    <script src="lastpage.js"></script>
+</body>
+</html>

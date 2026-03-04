@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEPRAILWAY</title>
+    <link rel="stylesheet" href="data2.css" />
+  </head>
+  <body>
+    <header class="მთავარი-ნავიგაცია">
+      <div class="ლოგო">STEP RAILWAY</div>
+      <button class="დახმარება" onclick="window.location.href = 'AI.html'">
+        დახმარება
+      </button>
+      <button class="ბილეთის-შემოწმება" onclick="window.location.href = 'lastpage.html'">ბილეთის შემოწმება/დაბრუნება</button>
+    </header>
+
+    <main class="კონტეინერი">
+      <section class="ლურჯი-ზოლი">
+        <h1 class="გადახდა-h1">გადახდის გვერდი</h1>
+      </section>
+
+      <form id="გადახდის-ფორმა" class="ფორმა">
+        <div class="ჯამური-თანხა">
+          სულ გადასახდელი: <span id="თანხა">150.00</span> ₾
+          <p id="შეცდომის-შეტყობინება" class="შეცდომა">
+            *ყველა ველი აუცილებლად უნდა შეივსოს!!!
+          </p>
+        </div>
+
+        <div class="ინპუტ-ჯგუფი">
+          <label>ბარათის ნომერი*</label>
+          <input
+            type="text"
+            id="ბარათის-ნომერი"
+            placeholder="2456 1665 5155 5151"
+            required
+          />
+        </div>
+
+        <div class="ორმაგი-ინპუტი">
+          <div class="ინპუტ-ჯგუფი">
+            <label>მოქმედების ვადა*</label>
+            <input type="text" id="ვადა" placeholder="DD/MM/YY" required />
+          </div>
+          <div class="ინპუტ-ჯგუფი">
+            <label>CVC / CVV</label>
+            <input type="password" id="კოდი" placeholder="*" required />
+          </div>
+        </div>
+
+        <div class="ინპუტ-ჯგუფი">
+          <label>ბარათის მფლობელი</label>
+          <input type="text" id="მფლობელი" placeholder="PE" />
+        </div>
+
+        <button type="submit" class="გადახდის-ღილაკი">გადახდა</button>
+      </form>
+    </main>
+
+    <script src="data2.js"></script>
+  </body>
+</html>

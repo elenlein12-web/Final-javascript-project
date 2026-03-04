@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>STEPRAILWAY</title>
+    <link rel="stylesheet" href="data.css" />
+  </head>
+  <body>
+    <header class="მთავარი-ნავიგაცია">
+      <div class="ლოგო">STEP RAILWAY</div>
+      <button class="დახმარება" onclick="window.location.href = 'AI.html'">
+        დახმარება
+      </button>
+      <button class="ბილეთის-შემოწმება" onclick="window.location.href = 'lastpage.html'">ბილეთის შემოწმება/დაბრუნება</button>
+    </header>
+    <section class="ლურჯი-ზოლი">
+      <h1 class="მონაცემების-h1">მონაცემების-გვერდი</h1>
+    </section>
+    <main class="კონტეინერი">
+      <div class="მთავარი-კონტეინერი">
+        <section id="რეისის-სექცია">
+          <h3 class="სათაური">შეიყვანეთ თქვენი მონაცემები</h3>
+          <div class="რეისის-ბარათი"></div>
+        </section>
+
+        <section id="ფორმის-სექცია">
+          <h3 class="სათაური">საკონტაქტო ინფორმაცია</h3>
+          <div class="ინპუტების-ჯგუფი">
+            <input type="email" id="მეილი" placeholder="name@gmail.com" />
+            <input type="tel" id="ტელეფონი" placeholder="" />
+          </div>
+
+          <h3 class="სათაური">მგზავრების ინფორმაცია</h3>
+
+          <div id="passenger-list"></div>
+        </section>
+
+        <div id="seat-modal" class="modal hidden">
+          <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>აირჩიეთ ადგილი (II კლასი)</h3>
+            <div class="wagon-visual">
+              <div id="seats-grid" class="seats-grid"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ბარგის-სექცია">
+          <div class="ბარგი">👜 Personal Item <br /><span>Included</span></div>
+          <div class="ბარგი">🧳 Carry-on bag <br /><span>Included</span></div>
+          <div class="ბარგი">
+            📦 Checked Bags <br /><span class="არ-არის">Not Included</span>
+          </div>
+        </div>
+      </div>
+      <aside class="invoice-section">
+        <div class="invoice-card">
+          <h3>ინვოისი</h3>
+          <hr />
+          <div id="selected-seats-summary"></div>
+          <div class="total-price">
+            სულ: <span id="total-amount">0.00</span>₾
+          </div>
+          <label>
+            <input type="checkbox" id="terms" /> ვეთანხმები წესებს
+          </label>
+          <button class="ღილაკი-1" id="book-btn" class="main-btn">
+            ბილეთის რეგისტრაცია
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <script src="data.js"></script>
+  </body>
+</html>

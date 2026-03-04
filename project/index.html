@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Single:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+    <title>მატარებლები</title>
+  </head>
+  <body>
+    <header>
+      <div class="top-bar">
+        <span id="welcomeText"></span>
+        <button onclick="logout()" class="logout-btn">Logout</button>
+      </div>
+      <div class="header-h1-h4">
+        <h1>მატარებლები</h1>
+        <h4>
+          გაფილტრეთ თქვენი მატარებლის ბილეთები თქვენი მოწონებით / აირჩიეთ თქვენი
+          მოგზაურობისთვის იდეალური მატარებლის ბილეთი
+        </h4>
+      </div>
+    </header>
+    <div class="main-section">
+      <main>
+        <label for="from">საიდან:</label>
+        <select id="from">
+          <option value="all">ყველა</option>
+          <option value="თბილისი">თბილისი</option>
+          <option value="ბათუმი">ბათუმი</option>
+          <option value="ფოთი">ფოთი</option>
+        </select>
+        <label for="to">სად:</label>
+        <select id="to">
+          <option value="all">ყველა</option>
+          <option value="თბილისი">თბილისი</option>
+          <option value="ბათუმი">ბათუმი</option>
+          <option value="ფოთი">ფოთი</option>
+        </select>
+        <label for="when">დღე:</label>
+        <select id="when">
+          <option value="all">ყველა</option>
+          <option value="ორშაბათი 2 მარტი">ორშაბათი</option>
+          <option value="სამშაბათი 3 მარტი">სამშაბათი</option>
+          <option value="ოთხშაბათი 4 მარტი">ოთხშაბათი</option>
+          <option value="ხუთშაბათი 26 მარტი">ხუთშაბათი</option>
+          <option value="პარასკევი 6 მარტი">პარასკევი</option>
+          <option value="შაბათი 28 მარტი">შაბათი</option>
+          <option value="კვირა 1 მარტი">კვირა</option>
+        </select>
+        <div id="posts"></div>
+        <button id="loadMore">Load more</button>
+      </main>
+      <section>
+        <h2 class="section-h2">რატომ უნდა მოგზაუროთ ჩვენი მატარებლით?</h2>
+        <p class="section-p">
+          მოგზაურობა უნდა იყოს უფრო ვიდრე მხოლოდ წყაროდან სამიზნემდე გადასვლა —
+          ის უნდა იყოს კომფორტული, სასურველი, და სიმღერით. ორიგინალური
+          მატარებლისთვის, ორიგინალური ოპციები:
+        </p>
+
+        <div class="reason">
+          <h3>კომფორტი</h3>
+          <p>
+            ჩვენი თანამედროვე მატარებლები გთავაზობთ ფართო სავარძლებს, სუფთა
+            ინტერიერს და უამრავ ადგილს ფეხებისთვის. საქმიანი თუ დასასვენებელი
+            მიზნით მოგზაურობთ, შეგიძლიათ დაისვენოთ და ისიამოვნოთ მგზავრობით.
+          </p>
+        </div>
+
+        <div class="reason">
+          <h3>ყოველთვის დროში</h3>
+          <p>
+            ჩვენ გამოვიყენებთ საკუთარ დროს. ჩვენი მატარებლები სწორი განრიგით
+            მოძრავენ, დახმარებთ თქვენს მიზნისკენ უსაფრთხოდ, უფუძესისგან
+            გადატვირთულობის გარეშე.
+          </p>
+        </div>
+
+        <div class="reason">
+          <h3>ეკო-მეგობრული მოგზაურობა</h3>
+          <p>
+            მატარებლის მოგზაურობა ერთ-ერთი ყველაზე გარემოსასურველი გზაა ქალაქებს
+            შორის გადასვლისთვის. ჩვენი მატარებლის მოყენებით, თქვენ შეძლებთ
+            დაკლიტვის შემცირებას, დაცულის ოფიცინური ოპციებისთვის.
+          </p>
+        </div>
+
+        <div class="reason">
+          <h3>სამართლიანი ფასები</h3>
+          <p>
+            ჩვენ გთავაზობთ კომპეტიტიურ ბილეთების ფასებს და სპეციალურ
+            ფასდაკლებებს სტუდენტებისთვის, ოჯახებისთვის, და ხშირად
+            მოგზაურებულთვის — ხარისხის მოგზაურობა უნდა იყოს მხოლოდ ძვლით.
+          </p>
+        </div>
+
+        <div class="reason">
+          <h3>თანამედროვე სამართლიანი სამსახურები</h3>
+          <p>
+            თავისუფლად გამოყენებული Wi-Fi, დატვირთვის საშუალებები და მოგზაურობის
+            დროს ხელმისაწყობი სერვისები, რომლებიც თქვენს მოგზაურობაში გზავნილი
+            დროს უფრო პროდუქტული, კომფორტული ხდება.
+          </p>
+        </div>
+
+        <div class="reason">
+          <h3>სამართლიანი კონქურენტები</h3>
+          <p>
+            ჩვენი მატარებლები დამუშავდება სამართლიანი ფასებით, რომლებიც
+            უზრუნველყოფს თქვენს მოგზაურობის ხარისხს.
+          </p>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="index.js"></script>
+    <script>
+      const user = localStorage.getItem("loggedInUser");
+
+      if (!user) {
+        window.location.href = "registration.html";
+      }
+    </script>
+    <script>
+      document.getElementById("welcomeText").textContent =
+        "Welcome, " + localStorage.getItem("loggedInUser");
+
+      function logout() {
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "registration.html";
+      }
+    </script>
+  </body>
+</html>

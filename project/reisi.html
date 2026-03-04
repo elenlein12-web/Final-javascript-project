@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ka">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reisi.css" />
+    <title>მატარების დეტალები | STEP Railway</title>
+  </head>
+  <body>
+    <header class="მთავარი-ნავიგაცია">
+      <div class="მთავარი-კონტენტი">
+        <a href="index.html" class="ლოგო">🚂 STEP RAILWAY</a>
+      </div>
+      <nav class="თავი-კერძოსთან">
+        <button class="ბილეთის-შემოწმება" onclick="window.location.href = 'lastpage.html'">✓ ბილეთის შემოწმება</button>
+      </nav>
+    </header>
+    
+    <main class="ძირითადი-კონტენტი">
+      <div class="უკან-დაბრუნება">
+        <a href="index.html" class="უკან-ლინკი">
+          <span class="ისარი">←</span>
+          დაბრუნება მთავარ გვერდზე
+        </a>
+      </div>
+      
+      <section class="მატარების-რეკვიზიტი">
+        <div id="ticketDetails" class="რეკვიზიტის-კარტი"></div>
+      </section>
+
+      <div class="ღილაკი-ზონა">
+        <button id="bookButton" class="დაჯავშნის-ღილაკი">
+          <span class="ღილაკის-ტექსტი">დაჯავშნა</span>
+          <span class="ღილაკის-ემოჯი">→</span>
+        </button>
+      </div>
+    </main>
+
+    <script src="reisi.js"></script>
+  </body>
+</html>

@@ -1,0 +1,424 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.მთავარი-კონტეინერი {
+  max-width: 100%;
+  width: 90%;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.seat-btn {
+  width: 150px;
+  background: linear-gradient(135deg, #7ab2b2 0%, #5a9b9b 100%);
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  height: 45px;
+  border: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(122, 178, 178, 0.3);
+}
+
+.seat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(122, 178, 178, 0.4);
+  background: linear-gradient(135deg, #5a9b9b 0%, #4a8b8b 100%);
+}
+
+.seat-btn:active {
+  transform: translateY(0);
+}
+.მთავარი-ნავიგაცია {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  background: white;
+}
+.ლოგო {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
+}
+.კონტეინერი {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+  max-width: 100%;
+  width: 90%;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+.მონაცემების-h1 {
+  font-size: 40px;
+  text-align: center;
+}
+.ლურჯი-ზოლი {
+  background-color: #09637e;
+  color: white;
+  padding: 40px 0;
+  margin-bottom: 20px;
+  height: 120px;
+}
+
+.ბილეთის-შემოწმება {
+  background-color: #088396;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 60px;
+}
+.რეისის-ბარათი {
+  display: flex;
+  justify-content: space-between;
+
+  background: #f0f4f8;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.ინპუტების-ჯგუფი,
+.მგზავრის-ველები {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #7ab2b2;
+  box-shadow: 0 0 0 4px rgba(122, 178, 178, 0.1);
+  background-color: #f9feff;
+}
+
+/* ტელეფონის ინპუტის სპეციალური სტილი */
+#ტელეფონი {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 14px;
+}
+
+#ტელეფონი::placeholder {
+  color: #999;
+}
+.დახმარება {
+  background-color: #09637e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 60px;
+  margin-left: 700px;
+  width: 200px;
+}
+.ბარგის-სექცია {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  font-size: 23px;
+}
+
+#შენახვა {
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* მობილურის ზომა */
+@media (max-width: 600px) {
+  .ინპუტების-ჯგუფი,
+  .მგზავრის-ველები {
+    grid-template-columns: 1fr;
+  }
+
+  .რეისის-ბარათი {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+  max-width: 100%;
+  width: 90%;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+
+.trip-card,
+.passenger-row,
+.invoice-card {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+}
+
+.invoice-card {
+  background: linear-gradient(135deg, #f0f7f7 0%, #fff 100%);
+  border: 2px solid #e0eded;
+  border-radius: 12px;
+  padding: 25px;
+}
+
+.invoice-card h3 {
+  color: #09637e;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.invoice-card hr {
+  border: none;
+  border-top: 2px solid #e0eded;
+  margin: 15px 0;
+}
+
+.total-price {
+  background: linear-gradient(135deg, #7ab2b2 0%, #5a9b9b 100%);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin: 15px 0;
+  text-align: center;
+  font-size: 16px;
+}
+
+.passenger-row {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #7ab2b2;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
+  transition: all 0.3s ease;
+}
+
+.passenger-row:hover {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transform: translateX(5px);
+}
+
+.passenger-row strong {
+  min-width: 100px;
+  color: #09637e;
+  font-size: 15px;
+}
+
+.passenger-row input {
+  padding: 10px 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  flex: 1;
+  min-width: 150px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.passenger-row input:focus {
+  outline: none;
+  border-color: #7ab2b2;
+  box-shadow: 0 0 0 3px rgba(122, 178, 178, 0.1);
+}
+
+/* Responsive დიზაინი */
+@media (max-width: 900px) {
+  #app {
+    grid-template-columns: 1fr;
+  }
+
+  .invoice-section {
+    order: -1; /* ინვოისი ავა ზემოთ მობილურზე */
+  }
+}
+
+/* დიდი ეკრანების ოპტიმიზაცია */
+@media (min-width: 1400px) {
+  .კონტეინერი,
+  #app {
+    width: 95%;
+    max-width: 1400px;
+  }
+
+  .მთავარი-კონტეინერი {
+    width: 95%;
+  }
+}
+
+/* ძალიან დიდი ეკრანები */
+@media (min-width: 1900px) {
+  .კონტეინერი,
+  #app {
+    width: 80%;
+    max-width: 100%;
+  }
+}
+
+/* მოდალის სტილები */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-content {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  width: 95%;
+  max-width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.seat {
+  padding: 15px;
+  background: linear-gradient(135deg, #e8f5f5 0%, #e0eded 100%);
+  text-align: center;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  font-weight: 600;
+  color: #333;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.seat:hover {
+  background: linear-gradient(135deg, #d0ebe8 0%, #c8e0de 100%);
+  border-color: #7ab2b2;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(122, 178, 178, 0.3);
+}
+
+.seat.selected {
+  background: linear-gradient(135deg, #7ab2b2 0%, #5a9b9b 100%);
+  color: white;
+  border-color: #4a8b8b;
+  box-shadow: 0 4px 15px rgba(122, 178, 178, 0.4);
+}
+
+.seat.booked {
+  background: linear-gradient(135deg, #ffcccc 0%, #ff9999 100%);
+  color: white;
+  border-color: #cc0000;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+  cursor: not-allowed;
+}
+
+.seat.booked:hover {
+  background: linear-gradient(135deg, #ff9999 0%, #ff6666 100%);
+  border-color: #990000;
+  transform: none;
+}
+
+.modal-content h3 {
+  color: #09637e;
+  font-size: 24px;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.close-modal {
+  float: right;
+  font-size: 30px;
+  cursor: pointer;
+  color: #999;
+  transition: color 0.2s ease;
+}
+
+.close-modal:hover {
+  color: #000;
+}
+
+.ღილაკი-1 {
+  width: 100%;
+  background: linear-gradient(135deg, #7ab2b2 0%, #5a9b9b 100%);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 20px auto 0;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(122, 178, 178, 0.3);
+}
+
+.ღილაკი-1:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(122, 178, 178, 0.4);
+  background: linear-gradient(135deg, #5a9b9b 0%, #4a8b8b 100%);
+}
+
+.ღილაკი-1:active {
+  transform: translateY(0);
+}
