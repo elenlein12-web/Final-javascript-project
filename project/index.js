@@ -9,22 +9,21 @@ let filteredTickets = [];
 let currentPage = 1;
 const itemsPerPage = 5;
 
-// ================= FETCH DATA =================
+// fetch
 fetch("https://railway.stepprojects.ge/api/tickets")
   .then((response) => response.json())
   .then((data) => {
     allTickets = data;
     filteredTickets = allTickets;
 
-    populateDateFilter(allTickets); // dynamic dates
+    populateDateFilter(allTickets);
     displayTickets(filteredTickets, true);
   });
 
-// ================= POPULATE DATE FILTER =================
 function populateDateFilter(tickets) {
   const uniqueDates = [...new Set(tickets.map((ticket) => ticket.date))];
 
-  uniqueDates.sort(); // simple sorting
+  uniqueDates.sort(); 
 
   uniqueDates.forEach((date) => {
     const option = document.createElement("option");
@@ -34,7 +33,7 @@ function populateDateFilter(tickets) {
   });
 }
 
-// ================= DISPLAY TICKETS =================
+// display
 function displayTickets(tickets, reset = true) {
   if (reset) {
     postsContainer.innerHTML = "";
@@ -71,7 +70,7 @@ function displayTickets(tickets, reset = true) {
   }
 }
 
-// ================= FILTER LOGIC =================
+// Route validation
 function applyFilters() {
   const fromValue = filterFrom.value;
   const toValue = filterTo.value;

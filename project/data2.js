@@ -15,10 +15,10 @@ document
     localStorage.setItem("ბოლო_გადახდა", JSON.stringify(ბარათისმონაცემები));
 
     alert("გადახდა წარმატებით დასრულდა! მონაცემები შენახულია.");
-    
+
     // გადატანა ბილეთის შემოწმების გვერდზე
     window.location.href = "lastpage.html";
-    
+
     this.reset();
   });
 

@@ -1,14 +1,20 @@
-
-
 // ბილეთის რეგისტრაცია - მონაცემების შენახვა localStorage-ში
 function saveBileti() {
+  // არჩეთ საკონტაქტო ინფორმაცია
+  const email = document.getElementById("მეილი").value.trim();
+  const phone = document.getElementById("ტელეფონი").value.trim();
+
+  if (!email || !phone) {
+    alert("შეავსეთ საკონტაქტო ინფორმაცია (მეილი და ტელეფონი)");
+    return;
+  }
+
   const passengerBlocks = document.querySelectorAll(".passenger-row");
 
   let passengers = [];
   let selectedCount = 0;
 
   for (let block of passengerBlocks) {
-
     const fname = block.querySelector(".fname").value.trim();
     const lname = block.querySelector(".lname").value.trim();
     const idnum = block.querySelector(".idnum").value.trim();
@@ -25,7 +31,7 @@ function saveBileti() {
       fname,
       lname,
       idnum,
-      seat
+      seat,
     });
   }
 
@@ -37,7 +43,11 @@ function saveBileti() {
   tickets[ticketId] = {
     passengers,
     totalPrice: totalPrice,
-    createdAt: new Date().toLocaleString()
+    createdAt: new Date().toLocaleString(),
+    contact: {
+      email: email,
+      phone: phone,
+    },
   };
 
   localStorage.setItem("tickets", JSON.stringify(tickets));
@@ -320,15 +330,15 @@ document.getElementById("book-btn").addEventListener("click", function () {
 
 initApp();
 const ticket = {
-   id: "00c91282-c9f6-4943-852a-1b25c3ae1e86",
-   from: "თბილისი",
-   to: "ბათუმი",
-   departure: "17:05",
-   arrival: "22:17",
-   date: "30-08-2023",
-   name: "ნიკა ბერიძე",
-   personalNumber: "12345678901",
-   seat: "7A",
-   price: 150
+  id: "00c91282-c9f6-4943-852a-1b25c3ae1e86",
+  from: "თბილისი",
+  to: "ბათუმი",
+  departure: "17:05",
+  arrival: "22:17",
+  date: "30-08-2023",
+  name: "ნიკა ბერიძე",
+  personalNumber: "12345678901",
+  seat: "7A",
+  price: 150,
 };
 localStorage.setItem("ticket", JSON.stringify(ticket));

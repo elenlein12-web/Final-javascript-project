@@ -30,8 +30,21 @@ checkBtn.addEventListener("click", () => {
   console.log("ნაპოვნი ბილეთი:", ticket);
   console.log("მგზავრების რაოდენობა:", ticket.passengers.length);
 
+  // საკონტაქტო ინფორმაციის ჩვენება
+  let contactHTML = "";
+  if (ticket.contact) {
+    contactHTML = `
+      <div class="contact-info-result">
+        <h4>📋 საკონტაქტო ინფორმაცია</h4>
+        <p><strong>📧 ელფოსტა:</strong> ${ticket.contact.email}</p>
+        <p><strong>📱 ტელეფონი:</strong> ${ticket.contact.phone}</p>
+        <hr>
+      </div>
+    `;
+  }
+
   // დინამიკურად ემატება ყველა მგზავრი
-  passengersContainer.innerHTML = "";
+  passengersContainer.innerHTML = contactHTML;
   ticket.passengers.forEach((passenger, index) => {
     console.log(`მგზავრი ${index + 1}:`, passenger);
     passengersContainer.innerHTML += `
@@ -55,7 +68,7 @@ checkBtn.addEventListener("click", () => {
 
 cancelBtn.addEventListener("click", () => {
   cancelSuccess.classList.add("hidden");
-  
+
   const tickets = JSON.parse(localStorage.getItem("tickets")) || {};
   const id = ticketInput.value.trim().toUpperCase();
 
@@ -70,7 +83,7 @@ cancelBtn.addEventListener("click", () => {
 });
 
 // localStorage-ის შემოწმების ფუნქცია დებაგისთვის
-window.showTickets = function() {
+window.showTickets = function () {
   const tickets = JSON.parse(localStorage.getItem("tickets")) || {};
   console.log("=== localStorage-ის ყველა ბილეთი ===");
   console.table(tickets);
