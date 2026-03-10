@@ -1,29 +1,27 @@
-
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background-color: var(--bg-color);
-    justify-content: center;
-    text-align: center;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background-color: var(--bg-color);
+  justify-content: center;
+  text-align: center;
 }
 
 .container {
-    width: 90%;
-    max-width: 800px;
-    background: white;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    border-radius: 8px;
-    text-align: center;
-    justify-content: center;
-    margin-left:  300px;
-    margin-top: 80px;
+  width: 90%;
+  max-width: 800px;
+  background: white;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  justify-content: center;
+  margin-left: 300px;
+  margin-top: 80px;
 }
-
 
 .დახმარება {
   background-color: #09637e;
@@ -67,147 +65,149 @@ body {
   padding: 0 20px;
 }
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
 }
 
 .nav-btn {
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
+  background: var(--primary-blue);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .search-box {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 input {
-    flex-grow: 1;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 #checkBtn {
-    background: #09637e;
-    color: white;
-    border: none;
-    padding: 0 25px;
-    border-radius: 4px;
-    cursor: pointer;
+  background: #09637e;
+  color: white;
+  border: none;
+  padding: 0 25px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .result-card {
-    margin-top: 30px;
-    padding: 20px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
 .delete-btn {
-    background: #dc3545;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: background 0.3s ease;
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 .delete-btn:hover {
-    background: #c82333;
+  background: #c82333;
 }
 
 .cancel-msg {
-    color: var(--primary-blue);
-    font-weight: bold;
-    text-align: center;
-    font-size: 1.2rem;
+  color: var(--primary-blue);
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 /* ბილეთის ხაზ-ხაზი effect */
 .ticket-checked .ticket-details p {
-    color: #333;
-    opacity: 1;
+  color: #333;
+  opacity: 1;
 }
 
 .ticket-details {
-    background: #f9f9f9;
-    padding: 15px;
-    border-radius: 6px;
-    text-align: left;
+  background: #f9f9f9;
+  padding: 15px;
+  border-radius: 6px;
+  text-align: left;
 }
 
 .passenger-card {
-    background: #ffffff;
-    border-left: 4px solid #09637e;
-    padding: 12px;
-    margin-bottom: 12px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  background: #ffffff;
+  border-left: 4px solid #09637e;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .passenger-card h4 {
-    color: #09637e;
-    margin-bottom: 8px;
-    font-size: 1rem;
+  color: #09637e;
+  margin-bottom: 8px;
+  font-size: 1rem;
 }
 
 .passenger-card p {
-    margin: 6px 0;
-    font-size: 0.95rem;
-    color: #333;
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #333;
 }
 
 .passenger-card hr {
-    border: none;
-    border-top: 1px solid #e0e0e0;
-    margin: 8px 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 8px 0;
 }
 
 .status-msg {
-    font-size: 1.1rem;
-    padding: 12px;
-    border-radius: 6px;
-    margin-bottom: 15px;
+  font-size: 1.1rem;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
 }
 
 .status-msg.success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
 .contact-info-result {
-    background: #e7f3ff;
-    border-left: 4px solid #09637e;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 6px;
+  background: #e7f3ff;
+  border-left: 4px solid #09637e;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
 }
 
 .contact-info-result h4 {
-    color: #09637e;
-    margin-bottom: 10px;
-    font-size: 1rem;
+  color: #09637e;
+  margin-bottom: 10px;
+  font-size: 1rem;
 }
 
 .contact-info-result p {
-    margin: 8px 0;
-    font-size: 0.95rem;
-    color: #333;
+  margin: 8px 0;
+  font-size: 0.95rem;
+  color: #333;
 }

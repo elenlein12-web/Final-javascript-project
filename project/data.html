@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ka">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>STEPRAILWAY</title>
+    <title>STEP RAILWAY</title>
     <link rel="stylesheet" href="data.css" />
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   </head>
   <body>
     <header class="მთავარი-ნავიგაცია">
@@ -19,9 +22,11 @@
         ბილეთის შემოწმება/დაბრუნება
       </button>
     </header>
+
     <section class="ლურჯი-ზოლი">
       <h1 class="მონაცემების-h1">მონაცემების-გვერდი</h1>
     </section>
+
     <main class="კონტეინერი">
       <div class="მთავარი-კონტეინერი">
         <section id="რეისის-სექცია">
@@ -33,11 +38,10 @@
           <h3 class="სათაური">საკონტაქტო ინფორმაცია</h3>
           <div class="ინპუტების-ჯგუფი">
             <input type="email" id="მეილი" placeholder="name@gmail.com" />
-            <input type="tel" id="ტელეფონი" placeholder="" />
+            <input type="tel" id="ტელეფონი" placeholder="+995..." />
           </div>
 
           <h3 class="სათაური">მგზავრების ინფორმაცია</h3>
-
           <div id="passenger-list"></div>
         </section>
 
@@ -59,6 +63,7 @@
           </div>
         </div>
       </div>
+
       <aside class="invoice-section">
         <div class="invoice-card">
           <h3>ინვოისი</h3>
@@ -70,7 +75,7 @@
           <label>
             <input type="checkbox" id="terms" /> ვეთანხმები წესებს
           </label>
-          <button class="ღილაკი-1" id="book-btn" class="main-btn">
+          <button id="book-btn" class="ღილაკი-1 main-btn">
             ბილეთის რეგისტრაცია
           </button>
         </div>

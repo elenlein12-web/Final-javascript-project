@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   padding: 0;
   margin: 0;
@@ -113,23 +114,36 @@ body .main-section main {
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
+body .main-section main label {
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  color: #09637e;
+  font-size: 14px;
+}
 body .main-section main #from,
 body .main-section main #to,
 body .main-section main #when {
-  border: 2px solid #90e1dd;
+  border: 2px solid #cdeeee;
   padding: 12px 16px;
   border-radius: 10px;
   font-size: 15px;
-  background: #fafafa;
+  background: white;
   cursor: pointer;
-  transition: all 0.3s ease;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg fill='%2309637e' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 7l5 5 5-5H5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  transition: all 0.25s ease;
 }
 body .main-section main #from:hover,
 body .main-section main #to:hover,
 body .main-section main #when:hover {
   border-color: #2ea29e;
-  background: white;
-  box-shadow: 0 0 0 3px rgba(46, 162, 158, 0.1);
+  box-shadow: 0 4px 12px rgba(46, 162, 158, 0.2);
 }
 body .main-section main #from:focus,
 body .main-section main #to:focus,
@@ -138,7 +152,17 @@ body .main-section main #when:focus {
   border-color: #0aaea5;
   box-shadow: 0 0 0 3px rgba(10, 174, 165, 0.15);
 }
-body .main-section main .post {
+body .main-section main:hover {
+  border-color: #2ea29e;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(46, 162, 158, 0.1);
+}
+body .main-section main:focus {
+  outline: none;
+  border-color: #0aaea5;
+  box-shadow: 0 0 0 3px rgba(10, 174, 165, 0.15);
+}
+body .main-section .post {
   border: none;
   border-radius: 12px;
   margin-top: 15px;
@@ -149,19 +173,19 @@ body .main-section main .post {
   overflow: hidden;
   position: relative;
 }
-body .main-section main .post h3 {
+body .main-section .post h3 {
   font-size: 18px;
   font-weight: 600;
   color: #09637e;
   margin-bottom: 10px;
 }
-body .main-section main .post p {
+body .main-section .post p {
   font-size: 14px;
   color: #0d6e6a;
   margin: 6px 0;
   font-weight: 500;
 }
-body .main-section main .post::before {
+body .main-section .post::before {
   content: "";
   position: absolute;
   top: 0;
@@ -171,27 +195,62 @@ body .main-section main .post::before {
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: left 0.5s ease;
 }
-body .main-section main .post:hover {
+body .main-section .post:hover {
   background: linear-gradient(135deg, #0aaea5 0%, #daf0f0 100%);
   box-shadow: 0 8px 25px rgba(10, 174, 165, 0.25);
   transform: translateY(-4px);
 }
-body .main-section main .post:hover::before {
+body .main-section .post:hover::before {
   left: 100%;
 }
+body .main-section .post .select-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0aaea5, #09637e);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+body .main-section .post .select-btn::after {
+  content: "➜";
+  font-size: 16px;
+  transition: transform 0.2s ease;
+}
+body .main-section .post .select-btn:hover {
+  background: linear-gradient(135deg, #0cc0b7, #0a7c99);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(10, 174, 165, 0.35);
+}
+body .main-section .post .select-btn:hover::after {
+  transform: translateX(4px);
+}
+body .main-section .post .select-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(10, 174, 165, 0.25);
+}
 @media screen and (max-width: 835px) {
-  body .main-section main .post {
+  body .main-section .post {
     margin-top: 12px;
     padding: 16px;
   }
 }
 @media screen and (max-width: 835px) {
-  body .main-section main {
+  body .main-section {
     width: 100%;
     padding: 20px;
   }
 }
-body .main-section section {
+body section {
   display: flex;
   flex-direction: column;
   width: 40%;
@@ -200,7 +259,7 @@ body .main-section section {
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(9, 99, 126, 0.3);
 }
-body .main-section section .section-h2 {
+body section .section-h2 {
   color: #ebf4f6;
   font-weight: 700;
   font-size: 42px;
@@ -208,7 +267,7 @@ body .main-section section .section-h2 {
   margin-bottom: 25px;
   letter-spacing: -1px;
 }
-body .main-section section .section-p {
+body section .section-p {
   color: #d4f0f0;
   font-weight: 400;
   font-size: 16px;
@@ -216,11 +275,11 @@ body .main-section section .section-p {
   line-height: 1.6;
   margin-bottom: 30px;
 }
-body .main-section section .reason {
+body section .reason {
   width: 80%;
   align-self: center;
 }
-body .main-section section .reason h3 {
+body section .reason h3 {
   color: #6ddada;
   font-weight: 600;
   font-size: 28px;
@@ -228,7 +287,7 @@ body .main-section section .reason h3 {
   margin-top: 25px;
   margin-bottom: 12px;
 }
-body .main-section section .reason p {
+body section .reason p {
   color: #b5e6e6;
   font-weight: 400;
   font-size: 15px;
@@ -236,29 +295,29 @@ body .main-section section .reason p {
   font-style: italic;
   line-height: 1.6;
 }
-body .main-section section .reason:not(:last-child) {
+body section .reason:not(:last-child) {
   padding-bottom: 20px;
 }
 @media screen and (max-width: 835px) {
-  body .main-section section {
+  body section {
     width: 100%;
     padding: 30px 20px;
   }
 }
 @media screen and (max-width: 835px) {
-  body .main-section {
+  body {
     gap: 20px;
     padding: 20px;
   }
 }
 @media screen and (max-width: 480px) {
-  body .main-section {
+  body {
     flex-direction: column;
     padding: 15px;
   }
-  body .main-section header,
-  body .main-section main,
-  body .main-section section {
+  body header,
+  body main,
+  body section {
     width: 100% !important;
   }
 }/*# sourceMappingURL=index.css.map */

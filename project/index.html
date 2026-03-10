@@ -115,12 +115,19 @@
       const user = localStorage.getItem("loggedInUser");
 
       if (!user) {
-        window.location.href = "registration.html";
+        window.location.href = "index.html";
       }
     </script>
     <script>
-      document.getElementById("welcomeText").textContent =
-        "Welcome, " + localStorage.getItem("loggedInUser");
+      const welcomeText = document.getElementById("welcomeText");
+
+      const storedUser = localStorage.getItem("loggedInUser");
+
+      if (storedUser) {
+        const user = JSON.parse(storedUser);
+
+        welcomeText.textContent = "Welcome, " + user.firstName;
+      }
 
       function logout() {
         localStorage.removeItem("loggedInUser");

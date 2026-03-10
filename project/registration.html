@@ -3,290 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Authentication</title>
-
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-
-      body {
-        font-family:
-          -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          "Helvetica Neue", Arial, sans-serif;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        position: relative;
-        overflow: hidden;
-      }
-
-      body::before {
-        content: "";
-        position: absolute;
-        width: 500px;
-        height: 500px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        top: -250px;
-        right: -250px;
-        z-index: 1;
-      }
-
-      body::after {
-        content: "";
-        position: absolute;
-        width: 400px;
-        height: 400px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
-        bottom: -200px;
-        left: -200px;
-        z-index: 1;
-      }
-
-      .container {
-        width: 100%;
-        max-width: 420px;
-        background: white;
-        padding: 50px 40px;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        position: relative;
-        z-index: 2;
-        animation: slideUp 0.6s ease-out;
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      h2 {
-        text-align: center;
-        margin-bottom: 35px;
-        font-size: 28px;
-        font-weight: 600;
-        color: #333;
-        letter-spacing: -0.5px;
-      }
-
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      input {
-        width: 100%;
-        padding: 14px 16px;
-        border-radius: 10px;
-        border: 2px solid #e0e0e0;
-        font-size: 15px;
-        font-family: inherit;
-        transition: all 0.3s ease;
-        background: #fafafa;
-      }
-
-      input::placeholder {
-        color: #999;
-        font-weight: 500;
-      }
-
-      input:focus {
-        outline: none;
-        border-color: #667eea;
-        background: white;
-        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        transform: translateY(-2px);
-      }
-
-      input:valid {
-        border-color: #90ee90;
-      }
-
-      button {
-        width: 100%;
-        padding: 14px;
-        margin-top: 20px;
-        border: none;
-        border-radius: 10px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        color: white;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 0.5px;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-      }
-
-      button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-      }
-
-      button:active {
-        transform: translateY(0);
-      }
-
-      .toggle {
-        text-align: center;
-        margin-top: 25px;
-        font-size: 15px;
-        color: #666;
-      }
-
-      .toggle span:first-child {
-        font-weight: 500;
-      }
-
-      .toggle span:last-child {
-        color: #667eea;
-        cursor: pointer;
-        font-weight: 600;
-        transition: all 0.2s ease;
-        margin-left: 5px;
-      }
-
-      .toggle span:last-child:hover {
-        color: #764ba2;
-        text-decoration: underline;
-      }
-
-      .message {
-        text-align: center;
-        margin-top: 20px;
-        padding: 12px;
-        border-radius: 8px;
-        font-size: 14px;
-        font-weight: 500;
-        min-height: 20px;
-        animation: fadeIn 0.3s ease;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .success {
-        color: #27ae60;
-        background: #d5f4e6;
-        border: 1px solid #82e0aa;
-      }
-
-      .error {
-        color: #e74c3c;
-        background: #fadbd8;
-        border: 1px solid #f5b7b1;
-      }
-    </style>
+    <title>Registration</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="registration.css" />
   </head>
-
   <body>
-    <div class="container">
+    <div class="form-container">
       <h2 id="formTitle">Sign In</h2>
 
       <form id="authForm">
-        <input type="text" id="username" placeholder="Username" required />
-        <input type="email" id="email" placeholder="Email" />
-        <input type="password" id="password" placeholder="Password" required />
+        <input type="text" id="username" placeholder="სახელი" required />
+        <input
+          type="text"
+          id="lastname"
+          placeholder="გვარი"
+          class="hidden"
+          required
+        />
+        <input
+          type="email"
+          id="email"
+          placeholder="name@example.com"
+          class="hidden"
+          required
+        />
+        <input
+          type="tel"
+          id="phone"
+          placeholder="+995591234567"
+          class="hidden"
+          required
+        />
+        <input type="password" id="password" placeholder="პაროლი" required />
         <button type="submit" id="submitBtn">Sign In</button>
       </form>
 
-      <div class="toggle">
-        <span id="toggleText">Don't have an account?</span>
-        <span id="toggleBtn"> Sign Up</span>
-      </div>
-
-      <div class="message" id="message"></div>
+      <p class="toggle-text" id="toggleText">
+        Don't have an account?
+        <button class="toggle-btn" id="toggleBtn">Sign Up</button>
+      </p>
     </div>
 
-    <script>
-      const toggleBtn = document.getElementById("toggleBtn");
-      const toggleText = document.getElementById("toggleText");
-      const formTitle = document.getElementById("formTitle");
-      const emailInput = document.getElementById("email");
-      const authForm = document.getElementById("authForm");
-      const message = document.getElementById("message");
-      const submitBtn = document.getElementById("submitBtn");
-
-      let isSignUp = false;
-      emailInput.style.display = "none";
-
-      toggleBtn.addEventListener("click", () => {
-        isSignUp = !isSignUp;
-        message.textContent = "";
-
-        if (isSignUp) {
-          formTitle.textContent = "Sign Up";
-          submitBtn.textContent = "Sign Up";
-          emailInput.style.display = "block";
-          toggleText.textContent = "Already have an account?";
-          toggleBtn.textContent = " Sign In";
-        } else {
-          formTitle.textContent = "Sign In";
-          submitBtn.textContent = "Sign In";
-          emailInput.style.display = "none";
-          toggleText.textContent = "Don't have an account?";
-          toggleBtn.textContent = " Sign Up";
-        }
-      });
-
-      authForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-
-        const username = document.getElementById("username").value;
-        const email = emailInput.value;
-        const password = document.getElementById("password").value;
-
-        let users = JSON.parse(localStorage.getItem("users")) || [];
-
-        if (isSignUp) {
-          const exists = users.find((u) => u.username === username);
-          if (exists) {
-            message.textContent = "Username already exists!";
-            message.className = "message error";
-            return;
-          }
-
-          users.push({ username, email, password });
-          localStorage.setItem("users", JSON.stringify(users));
-
-          message.textContent = "Account created! You can now sign in.";
-          message.className = "message success";
-
-          // Clear form
-          authForm.reset();
-        } else {
-          const validUser = users.find(
-            (u) => u.username === username && u.password === password,
-          );
-
-          if (validUser) {
-            localStorage.setItem("loggedInUser", username);
-            window.location.href = "index.html";
-          } else {
-            message.textContent = "Invalid credentials!";
-            message.className = "message error";
-          }
-        }
-      });
-    </script>
+    <script src="registration.js"></script>
   </body>
 </html>
