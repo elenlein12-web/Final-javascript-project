@@ -162,6 +162,12 @@ body .main-section main:focus {
   border-color: #0aaea5;
   box-shadow: 0 0 0 3px rgba(10, 174, 165, 0.15);
 }
+@media screen and (max-width: 845px) {
+  body .main-section main {
+    width: 100%;
+    padding: 20px;
+  }
+}
 body .main-section .post {
   border: none;
   border-radius: 12px;
@@ -242,11 +248,6 @@ body .main-section .post .select-btn:active {
   body .main-section .post {
     margin-top: 12px;
     padding: 16px;
-  }
-}
-@media screen and (max-width: 835px) {
-  body .main-section {
-    width: 100%;
     padding: 20px;
   }
 }

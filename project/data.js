@@ -1,12 +1,13 @@
-const API_VAGONS = "https://railway.stepprojects.ge/api/vagons";
+const storedTrain = JSON.parse(sessionStorage.getItem("selectedTrain"));
+const API_VAGONS = `https://railway.stepprojects.ge/api/vagons?trainId=${storedTrain.id}`;
 const TICKET_PRICE = 35;
 
 let selectedPassengerIdx = null;
 let trainSeats = [];
+let seatsLoaded = false;
 
 /* TRAIN INFO */
 const ticketContainer = document.querySelector(".რეისის-ბარათი");
-const storedTrain = JSON.parse(sessionStorage.getItem("selectedTrain"));
 
 if (storedTrain && ticketContainer) {
   ticketContainer.innerHTML = `
@@ -18,17 +19,19 @@ if (storedTrain && ticketContainer) {
 }
 
 /* INIT */
-function initApp() {
-  renderPassengers(2); // default 2 passengers
-  loadSeatsFromAPI();
+async function initApp() {
+  renderPassengers(2);
+  await loadSeatsFromAPI();
   loadFromLocalStorage();
 }
+
 initApp();
 
 /* PASSENGERS */
 function renderPassengers(count) {
   const container = document.getElementById("passenger-list");
   container.innerHTML = "";
+
   for (let i = 1; i <= count; i++) {
     container.innerHTML += `
       <div class="passenger-row" data-id="${i}">
@@ -36,6 +39,7 @@ function renderPassengers(count) {
         <input type="text" placeholder="სახელი" class="fname" oninput="saveToLocalStorage()">
         <input type="text" placeholder="გვარი" class="lname" oninput="saveToLocalStorage()">
         <input type="text" placeholder="პირადი #" class="idnum" oninput="saveToLocalStorage()">
+
         <button onclick="openModal(${i})" class="seat-btn">
           ადგილი: <span id="seat-${i}">აირჩიე</span>
         </button>
@@ -46,32 +50,41 @@ function renderPassengers(count) {
 
 /* LOAD SEATS FROM API */
 async function loadSeatsFromAPI() {
+  if (seatsLoaded) return;
+
   try {
     const response = await fetch(API_VAGONS);
     const vagons = await response.json();
-    const trainVagons = vagons.filter((v) => v.trainId === storedTrain.id);
+
     trainSeats = [];
-    trainVagons.forEach((vagon) =>
-      vagon.seats.forEach((seat) => trainSeats.push(seat)),
-    );
+
+    vagons.forEach((vagon) => {
+      vagon.seats.forEach((seat) => trainSeats.push(seat));
+    });
+
+    seatsLoaded = true;
   } catch (err) {
-    console.error("Error loading seats:", err);
+    console.error("Seat loading error:", err);
   }
 }
 
 /* SEAT MODAL */
 function openModal(idx) {
   selectedPassengerIdx = idx;
-  document.getElementById("seat-modal").classList.remove("hidden");
+  document.getElementById("seat-modal").classList.add("show");
   renderSeats();
 }
 
 function renderSeats() {
   const grid = document.getElementById("seats-grid");
   grid.innerHTML = "";
+
   const bookedSeats = [];
+
   document.querySelectorAll(".seat-btn span").forEach((span) => {
-    if (span.innerText !== "აირჩიე") bookedSeats.push(span.innerText);
+    if (span.innerText !== "აირჩიე") {
+      bookedSeats.push(span.innerText);
+    }
   });
 
   trainSeats.forEach((seat) => {
@@ -87,17 +100,24 @@ function renderSeats() {
     div.onclick = () => {
       document.getElementById(`seat-${selectedPassengerIdx}`).innerText =
         seat.number;
+
       saveToLocalStorage();
-      document.getElementById("seat-modal").classList.add("hidden");
+      document.getElementById("seat-modal").classList.remove("show");
     };
 
     grid.appendChild(div);
   });
 }
 
+/* CLOSE MODAL */
+document.querySelector(".close-modal").onclick = () => {
+  document.getElementById("seat-modal").classList.remove("show");
+};
+
 /* STORAGE */
 function saveToLocalStorage() {
   const data = [];
+
   document.querySelectorAll(".passenger-row").forEach((row) => {
     data.push({
       fname: row.querySelector(".fname").value,
@@ -106,20 +126,24 @@ function saveToLocalStorage() {
       seat: row.querySelector(".seat-btn span").innerText,
     });
   });
+
   localStorage.setItem("railway_booking", JSON.stringify(data));
   updateInvoice();
 }
 
 function loadFromLocalStorage() {
   const saved = JSON.parse(localStorage.getItem("railway_booking") || "[]");
+
   saved.forEach((p, i) => {
     const row = document.querySelector(`.passenger-row[data-id="${i + 1}"]`);
     if (!row) return;
+
     row.querySelector(".fname").value = p.fname;
     row.querySelector(".lname").value = p.lname;
     row.querySelector(".idnum").value = p.idnum;
     row.querySelector(".seat-btn span").innerText = p.seat;
   });
+
   updateInvoice();
 }
 
@@ -127,27 +151,24 @@ function loadFromLocalStorage() {
 function updateInvoice() {
   const seats = document.querySelectorAll(".seat-btn span");
   let count = 0;
+
   seats.forEach((s) => {
     if (s.innerText !== "აირჩიე") count++;
   });
+
   document.getElementById("total-amount").innerText = (
     count * TICKET_PRICE
   ).toFixed(2);
 }
 
-/* CLOSE MODAL */
-document.querySelector(".close-modal").onclick = () => {
-  document.getElementById("seat-modal").classList.add("hidden");
-};
-
-/* BOOK BUTTON WITH SWEETALERT2 & VALIDATION */
+/* BOOK BUTTON */
 const bookBtn = document.getElementById("book-btn");
+
 bookBtn.addEventListener("click", () => {
   const email = document.getElementById("მეილი").value.trim();
   const phone = document.getElementById("ტელეფონი").value.trim();
   const terms = document.getElementById("terms");
 
-  // Regex
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^\+995\d{8}$/;
 
@@ -179,7 +200,10 @@ bookBtn.addEventListener("click", () => {
     const idnum = row.querySelector(".idnum").value.trim();
     const seat = row.querySelector(".seat-btn span").innerText;
 
-    if (!fname || !lname || !idnum || seat === "აირჩიე") allFilled = false;
+    if (!fname || !lname || !idnum || seat === "აირჩიე") {
+      allFilled = false;
+    }
+
     passengers.push({ fname, lname, idnum, seat });
   });
 
@@ -193,6 +217,7 @@ bookBtn.addEventListener("click", () => {
   }
 
   const totalPrice = (passengers.length * TICKET_PRICE).toFixed(2);
+
   const ticketId =
     "T" +
     Date.now().toString(36).toUpperCase() +
@@ -205,8 +230,10 @@ bookBtn.addEventListener("click", () => {
     passengers,
     totalPrice,
   };
+
   const tickets = JSON.parse(localStorage.getItem("tickets") || "{}");
   tickets[ticketId] = ticket;
+
   localStorage.setItem("tickets", JSON.stringify(tickets));
 
   Swal.fire({
@@ -219,16 +246,15 @@ bookBtn.addEventListener("click", () => {
   }).then((result) => {
     if (result.isConfirmed) {
       navigator.clipboard.writeText(ticketId);
+
       Swal.fire(
         "კოპირებულია!",
         "ბილეთის ნომერი კლიპბორდზე გაიგზავნა.",
         "success",
       ).then(() => {
-        // redirect after user sees the copied alert
         window.location.href = "lastpage.html";
       });
     } else {
-      // redirect if user clicks "გასვლა"
       window.location.href = "lastpage.html";
     }
   });

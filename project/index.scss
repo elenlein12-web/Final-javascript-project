@@ -104,6 +104,7 @@ body {
     @media screen and (max-width: 480px) {
       width: 100% !important;
     }
+  
   }
 
   .main-section {
@@ -175,6 +176,10 @@ body {
         outline: none;
         border-color: #0aaea5;
         box-shadow: 0 0 0 3px rgba(10, 174, 165, 0.15);
+      }
+      @media screen and (max-width: 845px) {
+        width: 100%;
+        padding: 20px;
       }
     }
 
@@ -277,12 +282,8 @@ body {
       @media screen and (max-width: 835px) {
         margin-top: 12px;
         padding: 16px;
+        padding: 20px;
       }
-    }
-
-    @media screen and (max-width: 835px) {
-      width: 100%;
-      padding: 20px;
     }
   }
 

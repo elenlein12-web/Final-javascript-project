@@ -1,8 +1,7 @@
-const toggleBtn = document.getElementById("toggleBtn");
+const form = document.getElementById("authForm");
 const toggleText = document.getElementById("toggleText");
 const formTitle = document.getElementById("formTitle");
 const submitBtn = document.getElementById("submitBtn");
-const authForm = document.getElementById("authForm");
 
 const firstNameInput = document.getElementById("username");
 const lastNameInput = document.getElementById("lastname");
@@ -11,36 +10,40 @@ const phoneInput = document.getElementById("phone");
 const passwordInput = document.getElementById("password");
 
 let isSignUp = false;
-const defaultRole = "user";
 
-function updateFormUI() {
+/* ---------- FORM TOGGLE ---------- */
+function renderForm() {
   if (isSignUp) {
     formTitle.textContent = "Sign Up";
     submitBtn.textContent = "Sign Up";
-    lastNameInput.classList.remove("hidden");
-    emailInput.classList.remove("hidden");
-    phoneInput.classList.remove("hidden");
-    toggleText.innerHTML = `Already have an account? <button class="toggle-btn" id="toggleBtn">Sign In</button>`;
-    document.getElementById("toggleBtn").addEventListener("click", toggleForm);
+
+    lastNameInput.style.display = "block";
+    phoneInput.style.display = "block";
+    emailInput.style.display = "block";
+
+    toggleText.innerHTML = `Already have an account? <button type="button" id="toggleBtn">Sign In</button>`;
   } else {
     formTitle.textContent = "Sign In";
     submitBtn.textContent = "Sign In";
-    lastNameInput.classList.add("hidden");
-    emailInput.classList.add("hidden");
-    phoneInput.classList.add("hidden");
-    toggleText.innerHTML = `Don't have an account? <button class="toggle-btn" id="toggleBtn">Sign Up</button>`;
-    document.getElementById("toggleBtn").addEventListener("click", toggleForm);
+
+    lastNameInput.style.display = "none";
+    phoneInput.style.display = "none";
+    emailInput.style.display = "block";
+
+    toggleText.innerHTML = `Don't have an account? <button type="button" id="toggleBtn">Sign Up</button>`;
   }
+
+  const toggleBtn = document.getElementById("toggleBtn");
+  toggleBtn.addEventListener("click", () => {
+    isSignUp = !isSignUp;
+    renderForm();
+  });
 }
 
-function toggleForm() {
-  isSignUp = !isSignUp;
-  updateFormUI();
-}
+renderForm();
 
-updateFormUI();
-
-authForm.addEventListener("submit", async (e) => {
+/* ---------- FORM SUBMIT ---------- */
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const firstName = firstNameInput.value.trim();
@@ -49,91 +52,70 @@ authForm.addEventListener("submit", async (e) => {
   const phone = phoneInput.value.trim();
   const password = passwordInput.value.trim();
 
-  if (
-    !firstName ||
-    !password ||
-    (isSignUp && (!lastName || !email || !phone))
-  ) {
-    return Swal.fire("შეცდომა", "გთხოვთ შეავსოთ ყველა ველი", "error");
-  }
+  let url, body;
 
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\+?\d{9,15}$/;
+  if (isSignUp) {
+    if (!firstName || !lastName || !email || !password) {
+      Swal.fire("Error", "Please fill all required fields", "error");
+      return;
+    }
 
-  if (isSignUp && !emailRegex.test(email)) {
-    return Swal.fire("შეცდომა", "გთხოვთ შეიყვანოთ ვალიდური ელფოსტა", "error");
-  }
+    url = "https://api.everrest.educata.dev/auth/sign_up";
+    body = {
+      firstName,
+      lastName,
+      age: 18,
+      email,
+      password,
+      address: "Tbilisi",
+      phone: phone || "+995599123456",
+      zipcode: "0178",
+      avatar: `https://api.dicebear.com/7.x/pixel-art/svg?seed=${firstName}`,
+      gender: "MALE",
+    };
+  } else {
+    // Sign In validation
+    if (!email || !password) {
+      Swal.fire("Error", "Enter email and password", "error");
+      return;
+    }
 
-  if (isSignUp && !phoneRegex.test(phone)) {
-    return Swal.fire("შეცდომა", "გთხოვთ შეიყვანოთ სწორი ტელეფონი", "error");
+    url = "https://api.everrest.educata.dev/auth/sign_in";
+    body = { email, password };
   }
 
   try {
-    if (isSignUp) {
-      const res = await fetch(
-        "https://rentcar.stepprojects.ge/api/Users/register",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            password,
-            role: defaultRole,
-            phoneNumber: phone,
-          }),
-        },
-      );
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
 
-      const data = await res.json();
+    const data = await response.json();
 
-      if (res.ok) {
-        Swal.fire(
-          "წარმატება!",
-          "რეგისტრაცია წარმატებით შესრულდა!",
-          "success",
-        ).then(() => {
-          // Redirect to index.html
-          window.location.href = "index.html";
-        });
-      } else {
-        Swal.fire(
-          "შეცდომა",
-          data.message || "რეგისტრაცია ვერ განხორციელდა",
-          "error",
-        );
-      }
-    } else {
-      const res = await fetch(
-        "https://rentcar.stepprojects.ge/api/Users/login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            firstName,
-            lastName: lastName || "User",
-            email: email || "",
-            password,
-            role: defaultRole,
-            phoneNumber: phone || "+995555555555",
-          }),
-        },
-      );
+    if (!response.ok) throw new Error(data.message || "Request failed");
 
-      const data = await res.json();
 
-      if (res.ok) {
-        Swal.fire("წარმატება!", "წარმატებით შესვლა!", "success").then(() => {
-          localStorage.setItem("loggedInUser", JSON.stringify(data));
-          window.location.href = "index.html";
-        });
-      } else {
-        Swal.fire("შეცდომა", data.message || "შესვლა ვერ მოხერხდა", "error");
-      }
-    }
+    const token = data.accessToken || data.access_token;
+    if (token) localStorage.setItem("token", token);
+
+    // Save user info so index.html recognizes login
+    localStorage.setItem(
+      "loggedInUser",
+      JSON.stringify({ firstName: firstName, email }),
+    );
+
+    Swal.fire({
+      icon: "success",
+      title: isSignUp ? "Account created!" : "Login successful!",
+    }).then(() => {
+      window.location.href = "index.html";
+    });
   } catch (err) {
-    console.error(err);
-    Swal.fire("შეცდომა", "სერვერთან დაკავშირება ვერ მოხერხდა", "error");
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: err.message,
+    });
   }
 });

@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="registration.css" />
   </head>
   <body>
@@ -13,37 +12,32 @@
 
       <form id="authForm">
         <input type="text" id="username" placeholder="სახელი" required />
-        <input
-          type="text"
-          id="lastname"
-          placeholder="გვარი"
-          class="hidden"
-          required
-        />
+        <input type="text" id="lastname" placeholder="გვარი" class="hidden" />
         <input
           type="email"
           id="email"
           placeholder="name@example.com"
           class="hidden"
-          required
         />
         <input
           type="tel"
           id="phone"
           placeholder="+995591234567"
           class="hidden"
-          required
         />
+        <label for="password" style="font-size: 12px; margin-right: 100px; color: rgb(176, 13, 13);">* please input a long,strong password</label>
         <input type="password" id="password" placeholder="პაროლი" required />
         <button type="submit" id="submitBtn">Sign In</button>
       </form>
 
       <p class="toggle-text" id="toggleText">
         Don't have an account?
-        <button class="toggle-btn" id="toggleBtn">Sign Up</button>
+        <button type="button" class="toggle-btn" id="toggleBtn">Sign Up</button>
       </p>
     </div>
 
+    <!-- Scripts at the bottom -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="registration.js"></script>
   </body>
 </html>

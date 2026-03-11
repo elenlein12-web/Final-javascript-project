@@ -34,15 +34,15 @@
       <main>
         <label for="from">საიდან:</label>
         <select id="from">
-          <option value="from"></option>
+          <option value="">All</option>
         </select>
         <label for="to">სად:</label>
         <select id="to">
-          <option value="to"></option>
+          <option value="">All</option>
         </select>
         <label for="when">დღე:</label>
-        <select name="when" id="when">
-          <option value=""></option>
+        <select id="when">
+          <option value="">All</option>
         </select>
         <div id="posts"></div>
         <button id="loadMore">Load more</button>
@@ -111,23 +111,14 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="index.js"></script>
+
     <script>
       const user = localStorage.getItem("loggedInUser");
+      if (!user) window.location.href = "registration.html";
 
-      if (!user) {
-        window.location.href = "index.html";
-      }
-    </script>
-    <script>
       const welcomeText = document.getElementById("welcomeText");
-
-      const storedUser = localStorage.getItem("loggedInUser");
-
-      if (storedUser) {
-        const user = JSON.parse(storedUser);
-
-        welcomeText.textContent = "Welcome, " + user.firstName;
-      }
+      if (user)
+        welcomeText.textContent = "Welcome, " + JSON.parse(user).firstName;
 
       function logout() {
         localStorage.removeItem("loggedInUser");
